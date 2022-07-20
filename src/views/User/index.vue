@@ -209,11 +209,6 @@ export default {
         email: '',
         mobile: ''
       },
-      editForm: {
-        username: this.currentName,
-        email: this.currentEmail,
-        mobile: this.currentMobile
-      },
       rules: {
         username: [
           { required: true, message: '用户名不能为空', trigger: 'blur' },
@@ -225,6 +220,11 @@ export default {
         ],
         email: [{ pattern: /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/, message: '请输入正确邮箱', trigger: 'blur' }],
         mobile: [{ pattern: /^(?:(?:\+|00)86)?1\d{10}$/, message: '请输入正确手机号', trigger: 'blur' }]
+      },
+      editForm: {
+        username: this.currentName,
+        email: this.currentEmail,
+        mobile: this.currentMobile
       },
       roleOptions: []
     }
@@ -251,9 +251,8 @@ export default {
         this.$message.error('添加失败')
       }
     },
-    // 修改用户状态
+    // 修改用户的状态
     async putState (id, state) {
-      // console.log(id, state)
       try {
         await putState(id, state)
         this.$message.success('修改成功')
@@ -261,7 +260,7 @@ export default {
         this.$message.error('修改失败')
       }
     },
-    // 编辑用户资料
+    // 编辑用户的资料
     async editConfirm () {
       this.$refs.editForm.validate()
       try {
@@ -284,7 +283,7 @@ export default {
         this.$message.error('删除失败')
       }
     },
-    // 分配角色
+    // 分配
     async putRole () {
       const i = this.roleOptions.findIndex(item => item.value === this.newRole)
       const roleId = this.roleOptions[i].id
@@ -298,7 +297,7 @@ export default {
         this.$message.error('分配失败')
       }
     },
-    // 编辑按钮点击事件
+    // 编辑按钮
     editClick (id, username, email, mobile) {
       this.isEditShow = true
       this.currentId = id
@@ -306,12 +305,12 @@ export default {
       this.currentEmail = email
       this.currentMobile = mobile
     },
-    // 删除按钮点击事件
+    // 删除按钮
     handleDelete (row) {
       this.isDelShow = true
       this.currentId = row.id
     },
-    // 设置按钮点击事件
+    // 设置按钮
     async setClick (row) {
       this.isRoleShow = true
       this.currentId = row.id
@@ -327,19 +326,15 @@ export default {
         console.log(error)
       }
     },
-    // 每页条数
     handleSizeChange (val) {
-      // console.log(`每页 ${val} 条`)
       this.pagesize = val
       this.getUsers()
     },
-    // 当前页数
     handleCurrentChange (val) {
-      // console.log(`当前页: ${val}`)
       this.pagenum = val
       this.getUsers()
     },
-    // 按内容查询
+    // 查询
     changeQuery () {
       this.query = this.input
       if (Number(this.query)) {

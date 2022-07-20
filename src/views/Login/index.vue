@@ -25,6 +25,7 @@
 
 <script>
 import { login } from '@/api/user'
+import { mapMutations } from 'vuex'
 export default {
   created () { },
   data () {
@@ -46,6 +47,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['setToken']),
     reset () {
       // 1.获取表单组件实现对象
       // 对整个表单进行重置,将所有字段值重置为初始值并移除校验结果
@@ -57,13 +59,15 @@ export default {
         // 二次校验 手动校验
         try {
           const res = await login(this.loginForm)
-          console.log(res)
-          // todo把token存到vuex中,并且持久化localStorage
+          // console.log(res)
+          this.setToken(res.data.data.token)
+          this.$message.success('登录成功')
           this.$router.push('/home')
         } catch (err) {
           console.log(err)
         }
       } catch (err) {
+        console.log(err)
         this.$message.error('登录表单校验失败')
       }
     }

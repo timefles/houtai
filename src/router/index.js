@@ -9,7 +9,7 @@ const Roles = () => import('@/views/Roles')
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', redirect: '/login' },
+  { path: '/', redirect: '/home' },
   { path: '/login', component: Login },
   {
     path: '/home',

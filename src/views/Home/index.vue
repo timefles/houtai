@@ -97,8 +97,8 @@
               <el-menu-item
                 index="5-1"
                 @click="$router.push({ name: 'report' })"
-                ><i class="el-icon-menu"></i>数据报表</el-menu-item
-              >
+                ><i class="el-icon-menu"></i>数据报表
+              </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>
@@ -113,6 +113,7 @@
 
 <script>
 import { getMenuList } from '@/api/home'
+import { mapMutations } from 'vuex'
 export default {
   async created () {
     try {
@@ -129,6 +130,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['removeToken']),
     // 退出返回登录页面
     logout () {
       window.sessionStorage.clear()
