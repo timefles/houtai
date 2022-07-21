@@ -19,8 +19,7 @@
               @click="changeQuery"
             ></el-button>
           </el-input>
-          <el-button type="primary" @click="isAddShow = true"
-            >
+          <el-button type="primary" @click="isAddShow = true">
             添加用户
           </el-button>
         </div>
@@ -76,7 +75,7 @@
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             :current-page="pagenum"
-            :page-sizes="[5, 10]"
+            :page-sizes="[2, 3, 4, 5, 6]"
             :page-size="pagesize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="total"

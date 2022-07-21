@@ -117,7 +117,6 @@ import { mapMutations } from 'vuex'
 export default {
   async created () {
     try {
-      console.log(123)
       const res = await getMenuList()
       console.log(res)
     } catch (err) {
